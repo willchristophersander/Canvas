@@ -1,0 +1,54 @@
+CS 2300 Final Project Proposal
+
+Name(s) of contributor(s): 
+William Sander
+
+Canvas is a C++ drawing and graphics application using OpenGL that allows users to draw on a digital canvas with multiple tools, layers, and real-time interaction. It will include pencil, shape, fill, eraser, and spray tools, along with a color picker, adjustable brush sizes, and graphical UI controls. Canvas will support multiple layers with opacity and visibility controls, file import/export (PNG/JPEG), and a full undo/redo system using a command-based architecture. The project will also incorporate a Python-based filter pipeline, enabling advanced image processing such as blur, edge detection, or sharpening. The goal is to demonstrate mastery of event-driven programming, object-oriented design, C++ graphics, debugging, and multi-language integration.
+
+
+
+Which size project are you proposing?  Large (200 pts)
+
+Propose your grading rubric here. This can be either a list of to-do functionalities that have points attached to each (like in guided and applied projects), or a table showing partial and full credit for larger sets of functionality (like in open-ended projects). It must add up to the number of points you specified above.
+1. Canvas & Rendering System — 30 pts
+	•	Robust RGBA pixel buffer
+	•	Efficient OpenGL texturing/rendering
+	•	Correct layer compositing (alpha blend)
+
+2. Drawing Tools — 30 pts
+	•	Pencil, line, rectangle, circle, spray, fill, eraser
+	•	Adjustable brush size & color
+	•	Smooth real-time drawing responsiveness
+
+3. Layer System — 30 pts
+	•	Add/remove layers
+	•	Opacity adjustment
+	•	Visibility toggle
+	•	Correct ordering behavior
+4. Undo/Redo System — 30 pts
+	•	Command-based undo/redo architecture
+	•	Works across all tools and layer operations
+	•	Supports multi-step undo/redo
+
+5. File Import & Export — 15 pts
+	•	Save canvas/layers to PNG
+	•	Load PNG/JPEG as layers
+	•	Stable and correct import/export behavior
+
+6. User Interface (UI) — 20 pts
+	•	Tool selection menu
+	•	Color picker
+	•	Brush size slider
+	•	Layer manager UI (visibility, opacity)
+	•	Filter execution menu
+
+
+7. Python Filter Integration — 25 pts
+	•	Working C++ → Python → C++ round trip
+	•	At least three functioning filters (blur, sharpen, edge detection, etc.)
+	•	Clean UI integration for running filters
+
+8. Feature Completeness & Stability — 20 pts
+	•	All implemented features function reliably
+	•	No major crashes, broken pathways, or obvious errors/bugs
+	•	Application behaves consistently across tools, layers, and filters
