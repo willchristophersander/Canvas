@@ -2,8 +2,12 @@
 #define CANVAS_RECTANGLE_TOOL_H
 
 #include "tools/Tool.h"
+#include <memory>
 
 namespace Canvas {
+
+// Forward declaration
+class PixelBuffer;
 
 /**
  * Draws rectangles from corner to corner.
@@ -12,7 +16,7 @@ namespace Canvas {
 class RectangleTool : public Tool {
 public:
     RectangleTool() = default;
-    ~RectangleTool() override = default;
+    ~RectangleTool() override; // Defined in .cpp where PixelBuffer is complete
 
     std::string getName() const override { return "Rectangle"; }
 
@@ -20,8 +24,11 @@ public:
     bool onMouseMove(Layer& layer, const ToolInput& input) override;
     bool onMouseUp(Layer& layer, const ToolInput& input) override;
 
-    bool hasPreview() const override { return true; }
-    void renderPreview(Layer& layer) override;
+    // No preview rendering for stability (draw on mouse up only)
+    bool hasPreview() const override { return false; }
+    void renderPreview(Layer& layer) override {}
+    bool isPreviewActive() const override { return false; }
+    void onDeselect() override;
 
     // Options
     bool isFilled() const { return m_filled; }
@@ -32,6 +39,7 @@ private:
 
     bool m_isDrawing = false;
     bool m_filled = false;
+    bool m_shiftHeld = false;
     int m_startX = 0;
     int m_startY = 0;
     int m_endX = 0;
@@ -41,4 +49,3 @@ private:
 } // namespace Canvas
 
 #endif // CANVAS_RECTANGLE_TOOL_H
-

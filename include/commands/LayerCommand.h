@@ -11,9 +11,25 @@ class Layer;
 class LayerManager;
 
 /**
+ * Base class for layer-related commands.
+ * Provides common functionality for layer operations.
+ */
+class LayerCommand : public Command {
+public:
+    LayerCommand(LayerManager* manager);
+    virtual ~LayerCommand() = default;
+
+protected:
+    LayerManager* m_manager;
+    
+    // Helper to generate command descriptions
+    std::string formatLayerName(const std::string& name, size_t index) const;
+};
+
+/**
  * Command for adding a new layer.
  */
-class AddLayerCommand : public Command {
+class AddLayerCommand : public LayerCommand {
 public:
     AddLayerCommand(LayerManager* manager, const std::string& name = "");
     ~AddLayerCommand() override = default;
@@ -23,7 +39,6 @@ public:
     std::string getDescription() const override;
 
 private:
-    LayerManager* m_manager;
     std::string m_layerName;
     size_t m_layerIndex = 0;
 };
@@ -31,7 +46,7 @@ private:
 /**
  * Command for removing a layer.
  */
-class RemoveLayerCommand : public Command {
+class RemoveLayerCommand : public LayerCommand {
 public:
     RemoveLayerCommand(LayerManager* manager, size_t index);
     ~RemoveLayerCommand() override = default;
@@ -41,51 +56,46 @@ public:
     std::string getDescription() const override;
 
 private:
-    LayerManager* m_manager;
     size_t m_layerIndex;
     std::unique_ptr<Layer> m_removedLayer;  // Stored for undo
 };
 
 /**
  * Command for changing layer opacity.
+ * Uses PropertyChangeCommand pattern for clean value swapping.
  */
-class LayerOpacityCommand : public Command {
+class LayerOpacityCommand : public PropertyChangeCommand<float> {
 public:
     LayerOpacityCommand(Layer* layer, float newOpacity);
     ~LayerOpacityCommand() override = default;
 
-    void execute() override;
-    void undo() override;
-    std::string getDescription() const override;
+protected:
+    void applyValue(float value) override;
 
 private:
     Layer* m_layer;
-    float m_oldOpacity;
-    float m_newOpacity;
 };
 
 /**
  * Command for changing layer visibility.
+ * Uses PropertyChangeCommand pattern for clean value swapping.
  */
-class LayerVisibilityCommand : public Command {
+class LayerVisibilityCommand : public PropertyChangeCommand<bool> {
 public:
     LayerVisibilityCommand(Layer* layer, bool visible);
     ~LayerVisibilityCommand() override = default;
 
-    void execute() override;
-    void undo() override;
-    std::string getDescription() const override;
+protected:
+    void applyValue(bool value) override;
 
 private:
     Layer* m_layer;
-    bool m_oldVisible;
-    bool m_newVisible;
 };
 
 /**
  * Command for reordering layers.
  */
-class MoveLayerCommand : public Command {
+class MoveLayerCommand : public LayerCommand {
 public:
     MoveLayerCommand(LayerManager* manager, size_t fromIndex, size_t toIndex);
     ~MoveLayerCommand() override = default;
@@ -95,7 +105,6 @@ public:
     std::string getDescription() const override;
 
 private:
-    LayerManager* m_manager;
     size_t m_fromIndex;
     size_t m_toIndex;
 };

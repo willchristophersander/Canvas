@@ -56,6 +56,7 @@ public:
     // Preview rendering (optional - for shape tools, etc.)
     virtual bool hasPreview() const { return false; }
     virtual void renderPreview(Layer& layer) {}
+    virtual bool isPreviewActive() const { return false; }
 
 protected:
     int m_brushSize = 5;
@@ -65,4 +66,6 @@ protected:
 } // namespace Canvas
 
 #endif // CANVAS_TOOL_H
+
+
 

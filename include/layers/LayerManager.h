@@ -58,7 +58,7 @@ public:
     std::unique_ptr<Layer> flattenAll() const;  // Create a flattened copy
 
 private:
-    std::string generateLayerName() const;
+    std::string generateLayerName();
 
 private:
     std::vector<std::unique_ptr<Layer>> m_layers;
@@ -71,4 +71,6 @@ private:
 } // namespace Canvas
 
 #endif // CANVAS_LAYER_MANAGER_H
+
+
 

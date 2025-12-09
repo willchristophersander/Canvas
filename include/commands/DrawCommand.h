@@ -1,8 +1,7 @@
 #ifndef CANVAS_DRAW_COMMAND_H
 #define CANVAS_DRAW_COMMAND_H
 
-#include "commands/Command.h"
-#include "core/Canvas.h"
+#include "commands/SnapshotCommand.h"
 #include <memory>
 
 namespace Canvas {
@@ -11,28 +10,30 @@ class Layer;
 
 /**
  * Command that captures a drawing operation on a layer.
- * Stores the before/after state for undo/redo.
+ * Uses the SnapshotCommand pattern for undo/redo.
+ * 
+ * Usage:
+ *   1. Create command (automatically captures "before" state)
+ *   2. Perform drawing operations on the layer
+ *   3. Call captureAfter()
+ *   4. Add to command history
  */
-class DrawCommand : public Command {
+class DrawCommand : public SnapshotCommand {
 public:
-    // Create command by capturing the current layer state as "before"
-    // Call captureAfter() when the drawing operation is complete
     DrawCommand(Layer* layer, const std::string& toolName);
     ~DrawCommand() override = default;
-
-    // Call this after the drawing operation completes
-    void captureAfter();
 
     void execute() override;
     void undo() override;
     void redo() override;
     std::string getDescription() const override;
 
+    // Merge with another draw command if possible (optimization)
+    bool canMergeWith(const Command& other) const override;
+    void mergeWith(Command& other) override;
+
 private:
-    Layer* m_layer;
     std::string m_toolName;
-    std::unique_ptr<PixelBuffer> m_beforeState;
-    std::unique_ptr<PixelBuffer> m_afterState;
 };
 
 } // namespace Canvas

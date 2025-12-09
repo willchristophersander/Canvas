@@ -38,6 +38,8 @@ set(GLAD_DIR ${CMAKE_SOURCE_DIR}/external/glad)
 set(CORE_SOURCES
     src/core/Color.cpp
     src/core/Canvas.cpp
+    src/core/DrawingUtils.cpp
+    src/core/LayerCompositor.cpp
     src/core/Application.cpp
 )
 
@@ -63,6 +65,7 @@ set(TOOLS_SOURCES
 )
 
 set(COMMANDS_SOURCES
+    src/commands/SnapshotCommand.cpp
     src/commands/DrawCommand.cpp
     src/commands/LayerCommand.cpp
     src/commands/CommandHistory.cpp
@@ -96,9 +99,9 @@ set(IMGUI_SOURCES
     ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
 )
 
-# glad source
+# glad source (C++ implementation)
 set(GLAD_SOURCES
-    ${GLAD_DIR}/src/glad.c
+    ${GLAD_DIR}/src/glad.cpp
 )
 
 # =============================================================================

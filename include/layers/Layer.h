@@ -34,7 +34,7 @@ public:
     // Texture for rendering (lazy-updated)
     Texture& getTexture();
     const Texture& getTexture() const;
-    void updateTexture();  // Call after modifying pixel buffer
+    void updateTexture() const;  // Call after modifying pixel buffer
     bool isTextureDirty() const;
 
     // Dimensions
@@ -53,13 +53,15 @@ private:
     std::string m_name;
     float m_opacity = 1.0f;
     bool m_visible = true;
-    bool m_textureDirty = true;
+    mutable bool m_textureDirty = true;
 
     PixelBuffer m_pixelBuffer;
-    Texture m_texture;
+    mutable Texture m_texture;
 };
 
 } // namespace Canvas
 
 #endif // CANVAS_LAYER_H
+
+
 

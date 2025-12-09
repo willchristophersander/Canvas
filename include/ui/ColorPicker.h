@@ -32,6 +32,9 @@ public:
     void setVisible(bool visible) { m_visible = visible; }
 
 private:
+    void updateFloatColor();
+
+private:
     Color m_currentColor = Color::Black();
     float m_colorFloat[4] = {0.0f, 0.0f, 0.0f, 1.0f};  // For ImGui
     ColorChangedCallback m_callback;
@@ -41,4 +44,6 @@ private:
 } // namespace Canvas
 
 #endif // CANVAS_COLOR_PICKER_H
+
+
 

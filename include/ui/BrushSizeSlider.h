@@ -47,3 +47,5 @@ private:
 
 #endif // CANVAS_BRUSH_SIZE_SLIDER_H
 
+
+

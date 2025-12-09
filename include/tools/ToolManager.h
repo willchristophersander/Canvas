@@ -55,3 +55,5 @@ private:
 
 #endif // CANVAS_TOOL_MANAGER_H
 
+
+

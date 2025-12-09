@@ -1,6 +1,8 @@
 #ifndef CANVAS_LAYER_PANEL_H
 #define CANVAS_LAYER_PANEL_H
 
+#include <cstddef>
+
 namespace Canvas {
 
 class LayerManager;
@@ -35,4 +37,6 @@ private:
 } // namespace Canvas
 
 #endif // CANVAS_LAYER_PANEL_H
+
+
 

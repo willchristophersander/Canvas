@@ -36,7 +36,7 @@ fi
 cd ..
 
 echo ""
-echo "Setup complete! Next steps:"
+echo "Setup complete. Next steps:"
 echo "1. Generate glad files from https://glad.dav1d.de/ (if not done)"
 echo "2. Install system dependencies:"
 echo "   - macOS: brew install glfw python3"

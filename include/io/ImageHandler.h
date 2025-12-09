@@ -47,3 +47,5 @@ private:
 
 #endif // CANVAS_IMAGE_HANDLER_H
 
+
+

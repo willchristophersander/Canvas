@@ -30,3 +30,5 @@ private:
 
 #endif // CANVAS_TOOL_PANEL_H
 
+
+

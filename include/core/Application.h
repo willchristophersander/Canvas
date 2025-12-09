@@ -54,13 +54,14 @@ public:
     int getCanvasWidth() const;
     int getCanvasHeight() const;
 
-private:
-    // Event handlers (called by GLFW callbacks)
+    // Event handlers (called by GLFW callbacks - public for static callbacks)
     void onMouseButton(int button, int action, int mods);
     void onMouseMove(double xpos, double ypos);
     void onKey(int key, int scancode, int action, int mods);
     void onScroll(double xoffset, double yoffset);
     void onResize(int width, int height);
+
+private:
 
     // Main loop steps
     void processInput();
@@ -93,4 +94,6 @@ private:
 } // namespace Canvas
 
 #endif // CANVAS_APPLICATION_H
+
+
 
