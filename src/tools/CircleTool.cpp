@@ -54,7 +54,7 @@ bool CircleTool::onMouseMove(Layer& layer, const ToolInput& input) {
 }
 
 bool CircleTool::onMouseUp(Layer& layer, const ToolInput& input) {
-    if (!m_isDrawing || !input.leftButton) {
+    if (!m_isDrawing) {
         return false;
     }
 

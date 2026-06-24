@@ -24,10 +24,9 @@ public:
     bool onMouseMove(Layer& layer, const ToolInput& input) override;
     bool onMouseUp(Layer& layer, const ToolInput& input) override;
 
-    // No preview rendering for stability (draw on mouse up only)
-    bool hasPreview() const override { return false; }
-    void renderPreview(Layer& layer) override {}
-    bool isPreviewActive() const override { return false; }
+    bool hasPreview() const override { return true; }
+    void renderPreview(Layer& layer) override;
+    bool isPreviewActive() const override;
     void onDeselect() override;
 
     // Options
@@ -44,6 +43,8 @@ private:
     int m_startY = 0;
     int m_endX = 0;
     int m_endY = 0;
+    Layer* m_previewLayer = nullptr;
+    std::unique_ptr<PixelBuffer> m_previewSnapshot;
 };
 
 } // namespace Canvas

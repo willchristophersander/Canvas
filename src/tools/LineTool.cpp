@@ -52,7 +52,7 @@ bool LineTool::onMouseMove(Layer& layer, const ToolInput& input) {
 }
 
 bool LineTool::onMouseUp(Layer& layer, const ToolInput& input) {
-    if (!m_isDrawing || !input.leftButton) {
+    if (!m_isDrawing) {
         return false;
     }
 
